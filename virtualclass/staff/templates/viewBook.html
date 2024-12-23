@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Container Styling */
+        .container {
+            max-width: 900px;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styling */
+        .table {
+            margin-bottom: 0;
+        }
+        
+        .thead-dark th {
+            background-color: #343a40 !important;
+            color: white;
+            text-align: center;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Input Styling */
+        .form-control {
+            border-radius: 5px;
+        }
+
+        /* Button Styling */
+        .btn {
+            border-radius: 4px;
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        /* Button Hover Effects */
+        .btn:hover {
+            opacity: 0.9;
+            transition: 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Book Management Table</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">BOOKNAME</th>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">ISBN</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in viewbook %}
+                <tr>
+                    <form method="post">
+                        {% csrf_token %}
+                        {% if request.POST.ISBN_No == data.ISBN_No and request.POST.btn == 'edit' %}
+                            <!-- Editable Fields -->
+                            <td>
+                                <input type="text" name="Book_Name" value="{{ data.Book_Name }}" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" name="Author_Name" value="{{ data.Author_Name }}" class="form-control">
+                            </td>
+                            <td>
+                                <input type="text" name="ISBN_No" value="{{ data.ISBN_No }}" class="form-control">
+                            </td>
+                            <td>
+                                <input type="hidden" name="ISBN_No" value="{{ data.ISBN_No }}">
+                                <button type="submit" name="btn" value="save" class="btn btn-success">Save</button>
+                                <button type="submit" name="btn" value="cancel" class="btn btn-secondary">Cancel</button>
+                            </td>
+                        {% else %}
+                            <!-- Static Display -->
+                            <td>{{ data.Book_Name }}</td>
+                            <td>{{ data.Author_Name }}</td>
+                            <td>{{ data.ISBN_No }}</td>
+                            <td>
+                                <input type="hidden" name="ISBN_No" value="{{ data.ISBN_No }}">
+                                <button type="submit" name="btn" value="edit" class="btn btn-primary">Edit</button>
+                                <button type="submit" name="btn" value="delete" class="btn btn-danger">Delete</button>
+                            </td>
+                        {% endif %}
+                    </form>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

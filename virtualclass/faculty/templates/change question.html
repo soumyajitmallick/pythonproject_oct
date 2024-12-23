@@ -1,0 +1,16 @@
+<tbody>
+    <form method="post" action="{% url 'evaluate' %}">
+        {% csrf_token %}
+        {% for data in questions %}
+        <tr>
+            <td>{{ data.subject_name }}</td>
+            <td>{{ data.chapter_name }}</td>
+            <td>{{ data.question }}</td>
+            <td><input type="radio" name="{{ data.question_id}}" id="" value="option1">{{ data.option1 }}</td>
+            <td><input type="radio" name="{{ data.question_id}}" id="" value="option2">{{ data.option2 }}</td>
+            <td><input type="radio" name="{{ data.question_id}}" id="" value="option3">{{ data.option3 }}</td>
+            <td><input type="radio" name="{{ data.question_id}}" id="" value="option4">{{ data.option4 }}</td>
+        </tr>
+        {% endfor %}
+    </form>
+</tbody>

@@ -1,0 +1,47 @@
+{% include 'uheader.html' %}
+<head>
+    <title>Welcome to User Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+        h1 {
+            color: #5dbccf;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            }
+        p {
+            font-size: 1.2em;
+            color: #555;
+            margin: 0.5em 0;
+            }
+        .highlight {
+            color: #5dbccf;
+            font-weight: bold;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ name|title }}</h1>
+        <p>Your account number is <span class="highlight">{{account_no }}</span></p>
+        <p>Your email is <span class="highlight">{{ email }}</span></p>
+        <p>Your mobile number is <span class="highlight">{{ mobile_no }}</span></p>
+    </div>
+</body>
+

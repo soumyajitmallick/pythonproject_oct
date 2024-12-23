@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<h1>Welcome to home page .....</h1>
+<img src="{% static 'images/pyimg.jpg' %}" alt=" ">
+
+<style>
+
+    img {
+        width: 95%;   /* Set the width */
+        height: 90%;  /* Set the height */
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        align-items: center;     /* Centers vertically */
+        margin-left: 2.5%;
+    }
+
+    
+
+</style>
+{% endblock %}     

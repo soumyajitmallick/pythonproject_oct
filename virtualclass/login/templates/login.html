@@ -1,0 +1,79 @@
+{% load static %}
+<style>
+    /* CSS for the login form */
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("{% static 'images/class3.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    form {
+        background-color: rgba(113, 115, 116, 0.8); /* Transparent background */
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        max-width: 320px;
+        width: 100%;
+        text-align: center;
+    }
+
+    form input[type="email"],
+    form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+    form input[type="submit"] {
+        background-color: #226eef;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        transition: background-color 0.3s ease;
+    }
+
+    form input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    form a {
+        display: block;
+        margin-top: 15px;
+        color: #051f3b;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    form a:hover {
+        text-decoration: underline;
+    }
+
+    h1, p, #msg {
+        color: #333;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+
+<form method="post">
+    email <input type="email" name="email"><br>
+    password <input type="password" name="pwd"><br>
+    <input type="submit" value="login" name="btn">
+    <a href="register">New user</a>
+    {% csrf_token %}
+</form>
+{{ msg }}

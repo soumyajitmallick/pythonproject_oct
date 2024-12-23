@@ -1,0 +1,49 @@
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        font-size: 1.5rem;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    table {
+        width: 70%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+
+    .email{
+        text-transform: none;
+    }
+</style>
+
+WELCOME TO REGISTER PAGE
+<form action="" method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" name="btn">
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>password</th>
+            <th>first name</th>
+            <th>last name</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in obj %}
+            <tr>
+                <td>{{item.username}}</td>
+                <td class="email">{{item.email}}</td>
+                <td>{{item.password}}</td>
+                <td>{{item.first_name}}</td>
+                <td>{{item.last_name}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>

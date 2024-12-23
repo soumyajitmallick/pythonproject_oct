@@ -1,0 +1,133 @@
+{% extends 'flayout/fbase.html' %}
+{% block content %}
+{% load static %}
+
+<form method="post" action="{% url 'get_questions' %}">
+    {% csrf_token %}
+    
+    <label for="sub_name">Subject Name</label>
+    <select name="sub_name" id="sub_name">
+        <option value="" selected disabled>Select Subject</option>
+        {% for data in sub %}
+        <option value="{{ data.subject_name }}">{{ data.subject_name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    
+    <label for="cpt_name">Chapter Name</label>
+    <select name="cpt_name" id="cpt_name">
+        <option value="" selected disabled>Select a chapter</option>
+    </select>
+    <br>
+
+    <input type="submit" value="Submit" name="btn">
+</form>
+
+<style>
+    /* Global Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg,  #e0f7fa, #80deea);
+        color: #333;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+
+    /* Form Styles */
+    form {
+        background: #ffffff;
+        padding: 20px 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
+        width: 400px;
+        box-sizing: border-box;
+        margin-top: 2%;
+        margin-left: 38%;
+    }
+
+    /* Dropdowns and Inputs */
+    form select,
+    form input[type="text"],
+    form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+
+    /* Dropdown Styling */
+    form select {
+        background: #f9f9f9;
+        cursor: pointer;
+    }
+
+    /* Submit Button Styling */
+    form input[type="submit"] {
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    form input[type="submit"]:hover {
+        background: #45a049;
+    }
+
+    /* Label Styling */
+    form label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    /* Remove unnecessary line breaks */
+    form br {
+        display: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 500px) {
+        form {
+            width: 90%;
+        }
+    }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#sub_name').change(function () {
+            var sub_name = $(this).val();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'addquestion' %}",
+                data: {
+                    sub_name: sub_name,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (result) {
+                    // Clear previous chapter options
+                    $('#cpt_name').empty();
+                    $('#cpt_name').append('<option value="" disabled selected>Select a chapter</option>');
+
+                    // Add new chapter options from the result
+                    $.each(result.data, function (index, chapter) {
+                        $('#cpt_name').append('<option value="' + chapter + '">' + chapter + '</option>');
+                    });
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error: " + error);
+                    alert("An error occurred while fetching the chapters.");
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock %}

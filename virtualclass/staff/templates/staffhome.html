@@ -1,0 +1,109 @@
+<style>
+    /* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #ffffff;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #0056b3;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #191515;
+    box-shadow: 0 4px 8px rgba(32, 24, 24, 0.1);
+}
+
+table th, table td {
+    padding: 10px 15px;
+    text-align: left;
+    border: 1px solid #040202;
+}
+
+table th {
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+}
+
+/* Staff row styling */
+tr[style="background-color: darkorange;"] {
+    background-color: rgb(233, 229, 33) !important;
+    color: rgb(22, 18, 18);
+}
+
+/* Faculty row styling */
+tr[style="background-color: yellow;"] {
+    background-color: rgb(83, 86, 82) !important;
+    color: #333;
+}
+
+/* Student row styling */
+tr[style="background-color: pink;"] {
+    background-color: rgb(175, 80, 166) !important;
+    color: #333;
+}
+
+/* Hover effect for all rows */
+table tr:hover {
+    background-color: #141414;
+    cursor: pointer;
+}
+
+/* Table borders */
+table {
+    border: solid 2px #0056b3;
+}
+
+</style>
+<h1>welcome to staff home page...{{staffname|title}}</h1>
+<table border="solid">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Gender</th>
+        <th>Role</th>
+        <th>Dob</th>
+    
+    </tr>
+    {% for data in staffdata %}
+    <tr style="background-color: rgb(210, 209, 208);">
+        <td>{{data.name}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.mobile}}</td>
+        <td>{{data.gender}}</td>
+        <td>{{data.role}}</td>
+        <td>{{data.dob}}</td>
+    </tr>
+    {% endfor %}
+    {% for data1 in fdata %}
+    <tr style="background-color:rgb(210, 213, 210);">
+        <td>{{data1.name}}</td>
+        <td>{{data1.email}}</td>
+        <td>{{data1.mobile}}</td>
+        <td>{{data1.gender}}</td>
+        <td>{{data1.role}}</td>
+        <td>{{data1.dob}}</td>
+    </tr>
+    {% endfor %}
+
+    {% for data2 in sdata %}
+    <tr style="background-color: rgb(210, 208, 209);">
+        <td>{{data2.name}}</td>
+        <td>{{data2.email}}</td>
+        <td>{{data2.mobile}}</td>
+        <td>{{data2.gender}}</td>
+        <td>{{data2.role}}</td>
+        <td>{{data2.dob}}</td>
+    </tr>
+    {% endfor %}
+    </table>

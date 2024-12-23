@@ -1,0 +1,78 @@
+
+<style>
+    /* CSS for the form */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    width: 100%;
+    text-align: center;
+}
+
+form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+form input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+h1 {
+    color: #333;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+</style>
+
+<form method="post">
+    first no <input type="text" name="f1"><br>
+    second no <input type="text" name="f2"><br>
+
+    <select name="operation" required style="background-color: rgb(211, 216, 216); margin-bottom: 10px; border-radius: 5px;">
+        <option value="add">add</option>
+        <option value="mul">mul</option>
+        <option value="sub">sub</option>
+        <option value="div">div</option>
+    </select>
+
+    <input type="submit" value="button" name="btn">  
+    {% csrf_token %}   
+    <br>
+    {% if output %}
+        <h1>result is {{ output }}</h1>
+    {% endif %}
+</form>
+
+
+
+

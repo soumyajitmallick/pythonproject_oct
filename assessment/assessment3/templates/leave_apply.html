@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Application</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and Container Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header Styles */
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Form Styles */
+        form {
+            margin-bottom: 20px;
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select,
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            color: #333;
+        }
+
+        select:focus,
+        input[type="number"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+
+        option {
+            padding: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Message Styles */
+        .message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 4px;
+            color: #00796b;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        table th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Footer/Additional Info Styles */
+        table tfoot {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h2>Leave Application</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>
+                <label for="id_emp_id">Emp Name:</label>
+                <select name="emp_id" required="" id="emp_id">
+                    <option value="" selected="">---------</option>
+                    {% for obj in empls %}
+                    <option value="{{ obj.emp_id }}">{{ obj.emp_name}}</option>
+                    {% endfor %}
+                </select>
+            </p>
+            <p>
+                <label for="id_leave_emp_id">Leave Type:</label>
+                <select name="leave_type" required="" id="leave_type">
+                    <option value="" selected="">---------</option>
+                    <option value="EL">EL</option>
+                    <option value="cl">cl</option>
+                    <option value="ML">ML</option>
+                    Python TM seeree mob:9114493445 web:seeree.in
+                    <option value="PL">PL</option>
+                </select>
+            </p>
+            <p>
+                <label for="id_no_of_apply_leave">No of apply leave:</label>
+                <input type="number" name="no_of_apply_leave" required="" id="no_of_apply_leave">
+            </p>
+            <input type="submit" value="Submit">
+        </form>
+        {% if msg %}
+        <div class="message">
+            {{ msg }}
+        </div>
+        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Emp Name</th>
+                    <th>Leave Name</th>
+                    <th>Leave Assigned</th>
+                    <th>Leave Remaining</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                {% for obj in leaves %}
+                <tr>
+                    <td>{{ obj.emp_id.emp_name }}</td>
+                    <td>{{ obj.leave_id.leave_name }}</td>
+                    <td>{{ obj.no_of_assigned_leave }}</td>
+                    <td>{{ obj.no_of_aval_leave }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

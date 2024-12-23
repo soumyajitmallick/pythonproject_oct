@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Book Issue Table</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Custom Table Styles */
+        .table thead th {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+        }
+        .table tbody td {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 14px;
+            color: #555;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Cancel Button Styles */
+        input[name="btn"] {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[name="btn"]:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsive Table */
+        @media (max-width: 768px) {
+            .table th, .table td {
+                font-size: 12px;
+            }
+            input[name="btn"] {
+                padding: 3px 6px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Book Issue Records</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">BOOKNAME</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data1 in viewbookissue %}
+                <tr>
+                    <td>{{ data1.Book_Name }}</td>
+                    <td>{{ data1.mobile }}</td>
+                    <td>{{ data1.Issued_Date }}</td>
+                    <td>
+                        <form method="post" >
+                            {% csrf_token %}
+                            <input type="text" name="book_id" value="{{ data1.Book_Issued_id }}"hidden>
+                            <input type="submit" value="Cancel" name="btn">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 

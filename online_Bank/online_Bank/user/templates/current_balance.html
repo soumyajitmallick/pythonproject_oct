@@ -1,0 +1,47 @@
+{% include 'uheader.html'%}
+<head>
+    <title>Account Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+            }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+        h1 {
+            color: #5dbccf;
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            }
+
+        h2 {
+            color: #555;
+            font-size: 1.5em;
+            margin: 0.5em 0;
+            }
+
+        .highlight {
+            color: #0de82a;
+            font-weight: bold;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Transaction Data</h1>
+        <h2>Current Balance: <span class="highlight">{{ balance }}</span></h2>
+        <h2>Total Deposit Amount: <span class="highlight">{{ total_deposit }}</span></h2>
+        <h2>Total Withdrawal Amount: <span class="highlight">{{ total_withdraw }}</span></h2>
+    </div>
+</body>

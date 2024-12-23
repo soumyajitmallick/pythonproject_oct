@@ -1,0 +1,26 @@
+<form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="bookname">Book Name</label>
+        <select class="form-control" id="bookname" name="bookname" required>
+            <option value="0" disabled selected>---select book---</option>
+            {% for data in obbook %}
+            <option value="{{ data.Book_Name }}">{{data.Book_Name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="mobile">Mobile</label>
+        <select class="form-control" id="mobile" name="mobile" required>
+            <option value="0" disabled selected>---select mobile---</option>
+            {% for data1 in obmobile %}
+            <option value="{{data1.mobile}}">{{data1.mobile}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block" name="btn">Issue Book</button>
+    </div>
+</form>

@@ -1,0 +1,156 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+{% load static %}
+
+<style>
+
+body {
+    background-image: url("{% static 'images/class7.jpg' %}");
+    background-attachment: fixed; /* This makes the background image fixed */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+    
+    /* Container for the registration form */
+    .contact-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* This makes the background semi-transparent */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+
+    h1 {
+        text-align: center;
+        color:rgb(8, 75, 29);
+        
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+        color: #333;
+        
+    }
+
+    input[type="text"], input[type="email"], input[type="password"],input[type="tel"],input[type="date"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #a39b9b;
+        border-radius: 5px;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .butn {
+        width: 100%;
+        padding: 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    
+    }
+
+    .butn:hover {
+        background-color: #45a049;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .custom-width {
+        max-width: 470px;
+        border: 1px solid #a39b9b;
+        margin-top: 10px;
+    }
+
+
+
+    /* Make the .form-floating container transparent */
+.form-floating {
+    background-color: transparent; /* Makes the background of the container transparent */
+    border: 1px solid #a39b9b; /* Keep the border, or modify it to your preference */
+}
+
+/* Make the textarea itself transparent */
+textarea.form-control {
+    background-color: transparent; /* Makes the textarea background transparent */
+    color: #333; /* Optional: Set text color to ensure readability */
+    border: 1px solid #a39b9b; /* Optional: Keep the border around the textarea */
+}
+
+/* Add a transparent label background if needed */
+.form-floating label {
+    background-color: transparent;
+    color: #333; /* Optional: Set label text color */
+}
+
+    
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+</head>
+<body>
+    <div class="contact-container">
+        <h1>contact Form</h1>
+        <form name="myform" action="#" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+  
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div> 
+
+            <div class="form-group">
+                <label for="number">Phone Number:</label>
+                <input type="tel" id="mobile" name="mobile" required>
+            </div>
+
+            <div class="form-floating mb-3 custom-width">
+                <textarea class="form-control" id="message" name="message" placeholder="Message"></textarea>
+                <label for="message">Message</label>
+            </div>            
+            
+  
+            <div class="form-group">
+                <button type="submit" class="butn">Submit</button>
+            </div>
+  
+          </form>
+          <h1>{{ result }}</h1>
+      </div>
+    </body>
+  {% endblock %}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

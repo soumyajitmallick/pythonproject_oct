@@ -1,0 +1,102 @@
+{% extends 'alayout/abase.html' %}
+{% block content %}
+{% load static %}
+
+    <body>
+        <h1>welcome to admin home page {{aname|title}}...</h1>
+
+        <style>
+            /* Center the table on the page */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+            }
+
+            /* Center the table */
+            table {
+                width: 90%;
+                margin: 20px auto; /* Added auto for centering */
+                border-collapse: collapse;
+                background-color: #ffffff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+            }
+
+            /* Table headers styling */
+            th, td {
+                padding: 13px 20px;
+                text-align: center;
+                vertical-align: middle; /* Align vertically in the middle */
+                border: 1px solid #ddd;
+            }
+
+            /* Table header background color */
+            th {
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            /* Table data background color */
+            td {
+                background-color: #f9f9f9;
+            }
+
+            /* Alternate row colors */
+            tr:nth-child(even) td {
+                background-color: #f1f1f1;
+            }
+
+            /* Row hover effect */
+            tr:hover td {
+                background-color: #f0f0f0;
+            }
+
+            /* Add some spacing around the table */
+            table {
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+        </style>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mobile</th>
+                    <th>password</th>
+                    <th>Gender</th>
+                    <th>Role</th>
+                    <th>Dob</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for obj in data %}
+                <tr>
+                    <td>{{ obj.name }}</td>
+                    <td>{{ obj.email }}</td>
+                    <td>{{ obj.mobile }}</td>
+                    <td>{{ obj.password }}</td>
+                    <td>{{ obj.gender }}</td>
+                    <td>{{ obj.role }}</td>
+                    <td>{{ obj.dob }}</td>
+                    <form method="post">
+                        {% csrf_token %}
+                    <td>
+                        <input type="email" name="email" value="{{obj.email}}" hidden >
+                        <input type="submit" value="edit" name="btn">
+                        <input type="submit" value="delete" name="btn">
+
+                    </td>
+                    </form>  
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+{% endblock %}

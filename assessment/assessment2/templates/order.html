@@ -1,0 +1,58 @@
+<form method="post" action="/orderplace" id="orderform" >
+    {% csrf_token %}
+    Product Name <select name="pid" id="pid">
+        <option value="0">--Select product--</option>
+        {% for data in obj %}
+        <option value="{{data.prodID}}">{{data.prodName}}</option>
+        {% endfor %}
+    </select>
+    <br>
+    price <input type="text" name="prate" id="prate">
+    <br>
+    Qty <input type="text" name="oqty" id="oqty">
+    <input type="text" name="pqty" id="pqty" hidden>
+    <br>
+    <input type="submit" name="btn" value="order">
+</form>
+
+{% if messages %}
+    <div class="alert alert-success" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $('#pid').change(function(){
+    var pid;
+    pid=$(this).val();
+    $.ajax(
+        {
+            type:"POST",
+            url:"/order",
+            data:{
+                pid:pid,
+                csrfmiddlewaretoken:'{{csrf_token}}'
+            },
+            success:function(result)
+            {
+                $('#prate').val(result.prodobj.price);
+                $('#pqty').val(result.prodobj.Qty);
+            }
+        })
+    })
+</script>
+
+<script>
+    document.getElementById('orderForm').addEventListener('submit',function(e){
+        const oqty = parseInt(document.getElementById('oqty').value);
+        const pqty = parseInt(document.getElementById('pqty').value);
+
+        if (oqty > pqty){
+            alert('Product not available');
+            e.preventDefault(); // Prevent from submission
+        }
+    });
+</script>

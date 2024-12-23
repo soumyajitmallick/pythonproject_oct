@@ -1,0 +1,50 @@
+{% include 'uheader.html'%}
+<head>
+    <title>Balance History </title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 0 auto;
+            }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            }
+
+        tr:nth-child(even) {
+            background-color: aquamarine;
+            }
+
+    </style>
+</head>
+
+<body>
+    <h1 align="center">Transaction History</h1>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Transaction</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item.date }}</td>
+                    <td>
+                        {% if item.type == 'Deposit' %}
+                            + {{ item.amount }}
+                        {% else %}
+                            - {{ item.amount }}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h2 align="center">Total Deposit Amount: {{ total_deposit }}</h2>
+</body>

@@ -1,0 +1,106 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Table</title>
+    <style>
+        /* Center the table on the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90%;
+            margin: 0;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #f0f0f0;
+        }
+
+        /* Styling for the table header */
+        th {
+            text-transform: uppercase;
+        }
+
+        /* Add some spacing around the table */
+        table {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile</th>
+            <th>password</th>
+            <th>Gender</th>
+            <th>Role</th>
+            <th>Dob</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for obj in data %}
+        <tr>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.email }}</td>
+            <td>{{ obj.mobile }}</td>
+            <td>{{ obj.password }}</td>
+            <td>{{ obj.gender }}</td>
+            <td>{{ obj.role }}</td>
+            <td>{{ obj.dob }}</td>
+            <form method="post">
+                {% csrf_token %}
+            <td>
+                <input type="email" name="email" value="{{obj.email}}" hidden>
+                <input type="submit" value="delete" name="btn">
+                <input type="submit" value="edit" name="btn">
+
+            </td>
+        </form>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>

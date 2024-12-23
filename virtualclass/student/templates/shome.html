@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Table</title>
+</head>
+<body>
+    <h1>welcome to student home page {{sname|title}}...</h1>
+
+    <style>
+        /* Center the table on the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            height: 90%;
+            margin: 0;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        th, td {
+            padding: 12px 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #f0f0f0;
+        }
+
+        /* Styling for the table header */
+        th {
+            text-transform: uppercase;
+        }
+
+        /* Add some spacing around the table */
+        table {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>password</th>
+                <th>Gender</th>
+                <th>Role</th>
+                <th>Dob</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            <tr>
+                <td>{{ data.name }}</td>
+                <td>{{ data.email }}</td>
+                <td>{{ data.mobile }}</td>
+                <td>{{ data.password }}</td>
+                <td>{{ data.gender }}</td>
+                <td>{{ data.role }}</td>
+                <td>{{ data.dob }}</td>
+            </tr>
+            
+        </tbody>
+    </table>
+</body>
+</html>

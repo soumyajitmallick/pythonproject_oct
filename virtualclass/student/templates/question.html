@@ -1,0 +1,110 @@
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Chapter</th>
+        <th>Question</th>
+        <th>Option1</th>
+        <th>Option2</th>
+        <th>Option3</th>
+        <th>Option4</th>
+        <th>Answer</th>
+        <th>Action</th>
+    </tr>
+    {% for data in questions %}
+    <tr>
+        <td>{{data.subject_name}}</td>
+        <td>{{data.chapter_name}}</td>
+        <td>{{data.question}}</td>
+        <td>{{data.option1}}</td>
+        <td>{{data.option2}}</td>
+        <td>{{data.option3}}</td>
+        <td>{{data.option4}}</td>
+        <td>{{data.answer}}</td>
+        <td><input type="text" name="answer"></td>
+
+
+    </tr>
+    {% endfor %}
+</table>
+<input type="submit" name="btn" value="submit">
+{{data}}
+<style>
+    /* General styling for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    /* Table header styling */
+    th {
+        background-color: #4CAF50;
+        color: white;
+        text-align: left;
+        padding: 12px 15px;
+    }
+
+    /* Table cell styling */
+    td {
+        border: 1px solid #ddd;
+        padding: 12px 15px;
+        text-align: left;
+    }
+
+    /* Alternate row background color for better readability */
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Hover effect for rows */
+    tr:hover {
+        background-color: #ddd;
+    }
+
+    /* Styling for input buttons in the action column */
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        margin: 5px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    /* Hover effect for buttons */
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    /* Styling for table row actions when hovering over buttons */
+    td input[type="submit"]:focus {
+        outline: none;
+        box-shadow: 0 0 5px #4CAF50;
+    }
+
+    /* Optional: add spacing around the table for better layout */
+    table {
+        margin: 20px auto;
+    }
+
+    /* Responsive design for small screens */
+    @media screen and (max-width: 768px) {
+        table {
+            width: 100%;
+            font-size: 12px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+        }
+
+        input[type="submit"] {
+            padding: 6px 10px;
+        }
+    }
+</style>

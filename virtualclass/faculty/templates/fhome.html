@@ -1,0 +1,113 @@
+{% extends 'flayout/fbase.html' %}
+{% block content %}
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Table</title>
+</head>
+
+<body>
+    <h1>welcome to faculty home page {{sname|title}}...</h1>
+
+    <style>
+        /* Center the table on the page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            /* display: flex; */
+            justify-content: center;
+            align-items: center;
+            height: 90%;
+            margin: 0;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        th,
+        td {
+            padding: 12px 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #f0f0f0;
+        }
+
+        /* Styling for the table header */
+        th {
+            text-transform: uppercase;
+        }
+
+        /* Add some spacing around the table */
+        table {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+
+    <table border="solid">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Gender</th>
+                <th>Role</th>
+                <th>Dob</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fdata in data1 %}
+            <tr>
+                <td>{{ fdata.name }}</td>
+                <td>{{ fdata.email }}</td>
+                <td>{{ fdata.mobile }}</td>
+                <td>{{ fdata.gender }}</td>
+                <td>{{ fdata.role }}</td>
+                <td>{{ fdata.dob }}</td>
+            </tr>
+            {% endfor %}
+            {% for sdata in data2 %}
+            <tr style="background-color:red;">
+                <td>{{ sdata.name }}</td>
+                <td>{{ sdata.email }}</td>
+                <td>{{ sdata.mobile }}</td>
+                <td>{{ sdata.gender }}</td>
+                <td>{{ sdata.role }}</td>
+                <td>{{ sdata.dob }}</td>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+</body>
+
+</html>
+{% endblock %}

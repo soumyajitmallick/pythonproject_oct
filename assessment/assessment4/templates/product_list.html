@@ -1,0 +1,149 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    h2 {
+        text-align: center;
+        margin-top: 30px;
+        color: #333;
+    }
+
+    form {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+
+    form .btn {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+    }
+
+    form .btn:hover {
+        background-color: #45a049;
+    }
+
+    table {
+        width: 80%;
+        margin: 40px auto;
+        border-collapse: collapse;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table th, table td {
+        padding: 15px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    table th {
+        background-color: #4CAF50;
+        color: white;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    .button-inline {
+        padding: 8px 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 14px;
+        margin: 5px;
+    }
+
+    .button-inline:hover {
+        background-color: #0056b3;
+    }
+
+    .button-inline:focus {
+        outline: none;
+    }
+
+
+    @media (max-width: 768px) {
+        table {
+            width: 95%;
+        }
+
+        form {
+            width: 90%;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+    }
+
+</style>
+
+<h2>Product List</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block" >Save Product</button>
+</form>
+
+<script>
+    function edit ( row ) {
+        document.getElementById ('input') . val = row . val ;
+    }
+</script>
+
+<table border="1" width="80%">
+    <thead>
+        <tr>
+            <th>Product_ID</th>
+            <th>Product_Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for product in products %}
+        <form method="post" action="{% url 'edit_or_delete_product' product.id %}">
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                
+                <td>
+                    {% csrf_token %}
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" name="edit" class="button-inline">Edit</button>
+                        <button type="submit" name="delete" class="button-inline">Delete</button>
+                    </div>
+                </td>
+                
+            </tr>
+        </form>    
+        {% endfor %}
+    </tbody>
+</table>

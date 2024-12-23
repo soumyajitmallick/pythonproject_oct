@@ -1,0 +1,59 @@
+{% for data1 in data %}
+<form method="post" action="/update/">
+    {% csrf_token %}
+    Name <input type="text"  name="name"  value="{{data1.name}}">
+    <br>
+    email <input type="email" name="email" value="{{data1.email}}">
+    <br>
+    password <input type="text" name="pwd" value="{{data1.password}}">
+    <br>
+
+    mobile <input type="text" name="mobile" value="{{data1.mobile}}">
+    <br>
+    role  <input type="text" name="role" value="{{data1.role}}">
+    <br>
+    <input type="submit" value="Update" name="btn">
+</form>
+{% endfor %}
+
+<style>
+/* styles.css */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+form h2 {
+    text-align: center;
+    color: #333;
+}
+
+form label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+form input[type="text"],
+form input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+</style>
